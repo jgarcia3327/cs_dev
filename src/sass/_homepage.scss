@@ -171,6 +171,43 @@ p.copyright {
 
 /*** Custom Homepage ***/
 body{ 
+    background-color: #f8f8f8;
+
+    footer{
+        float: left;
+        width: 100%;
+        padding: 27px 0;
+        .footer-content{
+            max-width: 1170px;
+            padding-left: 15px;
+            padding-right: 15px;
+            margin: 0 auto;
+            .footer-left{
+                padding-right: 45px;
+                float: left;
+            }
+            .powered-by{
+                float: left;
+                span{
+                    color: #999999;
+                    display: block;
+                    margin-bottom: 12px;
+                    font-size: 80%;
+                }
+                img{
+                    width: auto;
+                    height: 60px;
+                    padding: 0 15px 15px 0;
+                }
+            }
+        }
+    }
+    .ajax-loader{
+        display: block;
+        text-align: center;
+        margin-top: 45px;
+        padding: 30px 0;
+    }
     .intro-header{
         padding-top: 0px;
         padding-bottom: 0px;
@@ -196,10 +233,17 @@ body{
             .input-group.input-group-lg{
                 margin-top: 9px;
             }
+            .reg-loader{
+                padding-top: 30%;
+            }
             .intro-message{
                 padding-top: 15%;
-                > div{
+                .col-lg-12{
                     margin-bottom: 21px;
+                }
+                .reg-progress{
+                    margin-left: 30px;
+                    margin-right: 30px;
                 }
             }
         }
@@ -219,5 +263,8 @@ body{
     }
     .feedback-msg-error{
         color: #f04124;
+    }
+    .sub-text{
+        font-size: 12px;
     }
 }

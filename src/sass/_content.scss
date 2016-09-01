@@ -1,10 +1,10 @@
 #page-container{
 	margin-top: 60px;
+	height: 100%;
 }
 
-#modals .modal-dialog{
+.modal-dialog{
 	width: 100%;
-	padding-left: 18px;
 
 	.modal-body{
 			padding: 0px;
@@ -38,4 +38,32 @@ button:focus{
 	    margin: 0 auto;
 	    pointer-events: all;
 	}
+}
+
+/*Dashboard*/
+body{
+
+    dashboard{
+
+        width: 100%;
+        float: left;
+        background-color: #fff;
+
+        .dashboard-container{
+			table.table{
+				tr > td:nth-child(1){
+					width: 111px;
+					h6{
+						color: #999;
+					}
+				}
+				tr > td:nth-child(2) a > span{
+					margin-right: 6px;
+		    		color: #999;
+		    		font-size: 84%;	
+				}
+			}
+		}
+
+    }
 }

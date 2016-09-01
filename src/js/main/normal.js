@@ -1,15 +1,7 @@
 
 $(document).ready(function(){
-
-	$("#reg-link").click(function(){
-		$("#view-reg").css({"display":"block"});
-		$("#view-login").css({"display":"none"});
-	});
-	$("#login-link").click(function(){
-		$("#view-reg").css({"display":"none"});
-		$("#view-login").css({"display":"block"});
-	});
-
+	
+	//Contact us message
 	var msg_box = "";
 	$("#contact-send-btn").click(function(){
 		var email = $("input.contact-email");
@@ -17,12 +9,12 @@ $(document).ready(function(){
 		var isProcess = true;
 		//Check value
 		$(".contact-email-container").removeClass("has-error");
-		if(!isValid(email.val(), "email")){
+		if(!isValidContactField(email.val(), "email")){
 			$(".contact-email-container").addClass("has-error");
 			isProcess = false;
 		}
 		$(".contact-msg-container").removeClass("has-error");
-		if(!isValid(msg.val(), "length")){
+		if(!isValidContactField(msg.val(), "length")){
 			$(".contact-msg-container").addClass("has-error");
 			isProcess = false;
 		}
@@ -50,7 +42,7 @@ $(document).ready(function(){
 
 });
 
-function isValid(val, element) {
+function isValidContactField(val, element){
 	if(element == "email"){
 		var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
   		return regex.test(val);
@@ -62,4 +54,3 @@ function isValid(val, element) {
 	}
 	return false;
 }
-
