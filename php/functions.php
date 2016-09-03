@@ -28,19 +28,30 @@ function register($arr, $db){
 	}
 }
 
-function userData($uid, $db){
-	if(empty($uid)){
+function userData($db){
+	if(!isLogin()){
+		return;
+	}
+	$result = $db->getUserData($_SESSION['uid']);
+	if($result === false){
+		logout();
 		jsonThrow(array('error' => "User not found"));
 	}
 	else{
-		$result = $db->getUserData($uid);
-		if($result === false){
-			logout();
-			jsonThrow(array('error' => "User not found"));
-		}
-		else{
-			jsonThrow($result);
-		}
+		jsonThrow($result);
+	}
+
+}
+
+function update($arr, $db, $cond){
+	if(!isLogin()){
+		return;
+	}
+	$table = $arr['db_table'];
+	unset($arr['db_table']);
+	$query = $db->update($table, $arr, $cond);
+	if($query === false){
+		jsonThrow(array('error' => "Error updating uid:".$uid." data"));
 	}
 }
 
@@ -62,6 +73,14 @@ function logout(){
 	unset($_SESSION);
 	session_unset();
 	session_destroy();
+}
+
+function isLogin(){
+	if(empty($_SESSION['uid'])){
+		jsonThrow(array('error' => "User not found"));
+		return false;
+	}
+	return true;
 }
 
 function jsonThrow($arr){

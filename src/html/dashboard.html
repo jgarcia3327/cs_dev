@@ -153,40 +153,89 @@
                             <tr>
                                 <td><h6>Team</h6></td>
                                 <td>
-                                    <h6>
-                                        <a href="#" title="Edit"><span ng-hide="userEdit.team" class="glyphicon glyphicon-console" ng-click="editUser('team')"></span><span ng-show="userEdit.team" class="glyphicon glyphicon-ban-circle" ng-click="editCancel('team')"></span></a>
-                                        <span ng-hide="userEdit.team">{{user.team}}</span>
-                                        <span ng-show="userEdit.team">
-                                            <input type="text" ng-model="userNew.team"/>
-                                        </span>
-                                    </h6>
+                                    <div ng-hide="userEdit.team">
+                                        <h6>
+                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('team')"></span></a>
+                                            <span>{{user.team}}</span>
+                                        </h6>
+                                    </div>
+                                    <div ng-show="userEdit.team">
+                                        <h6>
+                                            <span><input type="text" ng-model="userNew.team"/></span>
+                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('team')"></span></a>
+                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('team')"></span></a>
+                                        </h6>
+                                    </div>
                                 </td>
                             </tr><tr>
                                 <td><h6>About the team</h6></td>
                                 <td>
-                                    <h6>
-                                        <a href="#" title="Edit"><span ng-hide="userEdit.team_description" class="glyphicon glyphicon-console" ng-click="editUser('team_description')"></span><span ng-show="userEdit.team_description" class="glyphicon glyphicon-ban-circle" ng-click="editCancel('team_description')"></span></a>
-                                        <span ng-hide="userEdit.team_description">{{user.team_description}}</span>
-                                        <span ng-show="userEdit.team_description">
-                                            <input type="text" ng-model="userNew.team_description"/>
-                                        </span> 
-                                    </h6>
+                                    <div ng-hide="userEdit.team_description">
+                                        <h6>
+                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('team_description')"></span></a>
+                                            <span>{{user.team_description}}</span>
+                                        </h6>
+                                    </div>
+                                    <div ng-show="userEdit.team_description">
+                                        <h6>
+                                            <span><input type="text" ng-model="userNew.team_description"/></span>
+                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('team_description')"></span></a>
+                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('team_description')"></span></a>
+                                        </h6>
+                                    </div>
                                 </td>
                             </tr><tr>
                                 <td><h6>Email</h6></td>
                                 <td>
-                                    <h6>
-                                        <a href="#" title="Edit"><span ng-hide="userEdit.email" class="glyphicon glyphicon-console" ng-click="editUser('email')"></span><span ng-show="userEdit.email" class="glyphicon glyphicon-ban-circle" ng-click="editCancel('email')"></span></a>
-                                        <span ng-hide="userEdit.email">{{user.email}}</span>
-                                        <span ng-show="userEdit.email">
-                                            <input type="text" ng-model="userNew.email"/>
-                                        </span>
-                                    </h6>
+                                    <div ng-hide="userEdit.email">
+                                        <h6>
+                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('email')"></span></a>
+                                            <span>{{user.email}}</span>
+                                        </h6>
+                                    </div>
+                                    <div ng-show="userEdit.email">
+                                        <h6>
+                                            <span><input type="text" ng-model="userNew.email"/></span>
+                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('email')"></span></a>
+                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('email')"></span></a>
+                                        </h6>
+                                    </div>
                                 </td>
                             </tr><tr>
-                                <td><h6>Name</h6></td><td><h6><a href="#" title="Edit"><span class="glyphicon glyphicon-console"></span></a>{{user.fname}} {{user.lname}}</h6></td>
+                                <td><h6>Name</h6></td>
+                                <td>
+                                    <div ng-hide="userEdit.name">
+                                        <h6>
+                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('name')"></span></a>
+                                            <span>{{user.fname}} {{user.lname}}</span>
+                                        </h6>
+                                    </div>
+                                    <div ng-show="userEdit.name">
+                                        <h6>
+                                            <span><input type="text" ng-model="userNew.fname"/></span>
+                                            <span><input type="text" ng-model="userNew.lname"/></span>
+                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('name')"></span></a>
+                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('name')"></span></a>
+                                        </h6>
+                                    </div>
+                                </td>
                             </tr><tr>
-                                <td><h6>Position</h6></td><td><h6><a href="#" title="Edit"><span class="glyphicon glyphicon-console"></span></a>{{user.title}}</h6></td>
+                                <td><h6>Position</h6></td>
+                                <td>
+                                    <div ng-hide="userEdit.title">
+                                        <h6>
+                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('title')"></span></a>
+                                            <span>{{user.title}}</span>
+                                        </h6>
+                                    </div>
+                                    <div ng-show="userEdit.title">
+                                        <h6>
+                                            <span><input type="text" ng-model="userNew.title"/></span>
+                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('title')"></span></a>
+                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('title')"></span></a>
+                                        </h6>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

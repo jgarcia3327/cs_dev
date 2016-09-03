@@ -229,14 +229,14 @@ require 'php/functions.php';
                 </div>
                 <div class="footer-right powered-by">
                     <span>Powered by:</span>
-                    <img src="img/logo/php.png" />
-                    <img src="img/logo/pdo.png" />
-                    <img src="img/logo/mysql.png" />
-                    <img src="img/logo/jquery.png" />
-                    <img src="img/logo/angularjs.png" />
-                    <img src="img/logo/npm.png" />
-                    <img src="img/logo/gulp.png" />
-                    <img src="img/logo/git.png" />
+                    <img title="PHP" src="img/logo/php.png" />
+                    <img title="PHP PDO" src="img/logo/pdo.png" />
+                    <img title="MySQL" src="img/logo/mysql.png" />
+                    <img title="JQuery" src="img/logo/jquery.png" />
+                    <img title="AngularJS" src="img/logo/angularjs.png" />
+                    <img title="NPM" src="img/logo/npm.png" />
+                    <img title="Gulp JS" src="img/logo/gulp.png" />
+                    <img title="GIT Bash" src="img/logo/git.png" />
                 </div>
             </div>
         </div>

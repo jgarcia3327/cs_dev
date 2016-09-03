@@ -110,7 +110,7 @@ angular.module('devCS',[])
 	};
 	return {getUserData : getUserData};
 }])
-.controller('Dashboard', ['$scope', 'User', function($scope, User){
+.controller('Dashboard', ['$scope', 'User', '$http', function($scope, User, $http){
 	$scope.user = {};
 	$scope.userEdit = {};
 	$scope.userNew = {};
@@ -121,10 +121,66 @@ angular.module('devCS',[])
 	});
 	$scope.editUser = function(field){
 		$scope.userEdit[field] = true;
-		$scope.userNew[field] = $scope.user[field];
+		if(field=='name'){
+			$scope.userNew['fname'] = $scope.user['fname'];
+			$scope.userNew['lname'] = $scope.user['lname'];
+		}
+		else{
+			$scope.userNew[field] = $scope.user[field];
+		}
 	}
 	$scope.editCancel = function(field){
 		$scope.userEdit[field] = false;
+	}
+	$scope.editUpdate = function(field){
+		$scope.userEdit[field] = false;
+		var arr = {};
+		if(field=='name'){
+			arr.db_table = 'user';
+			if($scope.userNew['fname'] != $scope.user['fname']){
+				//update fname
+				$scope.user['fname'] = $scope.userNew['fname'];
+				arr['fname'] = $scope.userNew['fname'];
+			}
+			if($scope.userNew['lname'] != $scope.user['lname']){
+				//update lname
+				$scope.user['lname'] = $scope.userNew['lname'];
+				arr['lname'] = $scope.userNew['lname'];
+			}
+		}
+		else if(field == 'team' || field == 'team_description'){
+			arr.db_table = 'team';
+			arr.tid = $scope.user.tid;
+			$scope.user[field] = $scope.userNew[field];
+			if(field == 'team'){
+				arr['title'] = $scope.userNew[field];
+			}
+			if(field == 'team_description'){
+				arr['description'] = $scope.userNew[field];
+			}
+		}
+		else{
+			arr.db_table = 'user';
+			if($scope.userNew[field] != $scope.user[field]){
+				//update field
+				$scope.user[field] = $scope.userNew[field];
+				arr[field] =  $scope.userNew[field];
+			}
+		}
+		$scope.httpUpdate(arr);
+	}
+	$scope.httpUpdate = function(arr){
+		if(arr !== null && typeof arr === 'object' && Object.keys(arr).length > 1){
+			arr.action = 'update';
+			$http.post('php/process.php', $.param(arr), {headers: {'Content-Type':'application/x-www-form-urlencoded'}}).
+			success(function (data) {
+				if(data !== null && typeof data === 'object' && 'error' in data){
+					location.reload();
+				}
+			}).error(function(data) {
+				alert("Error contacting server. Please contact Dev CS.");
+			});
+		}
 	}
 }])
 .controller('Account', ['$scope', '$http', function($scope, $http){

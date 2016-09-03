@@ -90,7 +90,7 @@ class touch_db{
 			}
 			$condition = substr($condition, 0, -4);
 		}
-		$query = "SELECT `uid`, `password` FROM user WHERE {$condition} LIMIT 1";
+		$query = "SELECT `uid`, `password` FROM user WHERE active AND {$condition} LIMIT 1";
 		$result = $this->query($query, $prepare);
 
 		//Email not found
@@ -127,10 +127,31 @@ class touch_db{
 
 	/*
 	* @$table = String db table name
+	* @$arr = Array pair value
 	* @$cond = Array condition pair value. key = field, value = field_value
 	*/
-	public function remove($table, $cond){
-
+	public function update($table, $arr, $cond=null){
+		$prepare = array();
+		if(is_array($arr)){
+			$fields = "";
+			foreach($arr as $k => $v){
+				$fields .= "`{$k}` = ?, ";
+				$prepare[] = $v;
+			}
+			$fields = substr($fields, 0, -2);
+		}
+		//Condition
+		$where = "";
+		if(!is_null($cond) && is_array($cond)){
+			$where = "WHERE ";
+			foreach($cond as $k => $v){
+				$where .="{$k} = ? AND ";
+				$prepare[] = $v;
+			}
+			$where = substr($where, 0, -4);
+		}
+		$query = "UPDATE `{$table}` SET {$fields} {$where}";
+		return $this->query($query, $prepare, true);
 	}
 
 	/*
@@ -148,8 +169,16 @@ class touch_db{
 		try{
 			$stmt = $this->pdo->prepare($query);
 			$stmt->execute($prepare);
-			if(!$bool){
-				$this->last_num_rows = $stmt->rowCount();
+			$this->last_num_rows = $stmt->rowCount();
+			if($bool){
+				if($this->last_num_rows > 0){
+					return true;
+				}
+				else{
+					return false;
+				}
+			}
+			else{
 				$arr = array();
 				while($row = $stmt->fetch()){
 					$arr[] = $row;
@@ -158,9 +187,11 @@ class touch_db{
 			}
 		}catch(PDOException $e){
 			if($e->getCode() == 23000){
+				//echo "Duplicate error.";
 				return "Duplicate error.";
 			}
 			else{
+				//echo $e;
 				return $e;
 			}
 		}

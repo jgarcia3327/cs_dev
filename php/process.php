@@ -10,18 +10,27 @@ if( isset($_POST) ){
 	require 'functions.php';
 
 	$db = new touch_db();
+	$action = $_POST['action'];
+	unset($_POST['action']);
 
-	switch($_POST['action']){
+	switch($action){
 		case 'register' : register($_POST, $db); break;
 		case 'logout' : logout(); break;
 		case 'login' : login($_POST, $db); break;
-		case 'userData' : userData($_SESSION['uid'], $db); break;
+		case 'userData' : userData($db); break;
+		case 'update' : 
+			$cond = array('uid' => $_SESSION['uid']);
+			if(array_key_exists('tid', $_POST)){
+				$cond['tid'] = $_POST['tid'];
+				unset($_POST['tid']);
+			}
+			update($_POST, $db, $cond); break;
 	}
 
-	//TEST
-	//$arr = array("email"=>"test@gmail.com", "pass"=>"1234");
-	//login($arr, $db);
-	//userData(49, $db);
+	//UPDATE TEST
+	//$arr = array("db_table"=>"team", "title"=>"testTeam");
+	//$cond = array("uid"=>49, "tid"=>24);
+	//update($arr, $db, $cond);
 }
 
 ?>
