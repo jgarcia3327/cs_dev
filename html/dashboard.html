@@ -25,7 +25,7 @@
 
                 <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="project in projects | orderBy:'-date_created'">
                     <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
+                        <img src="img/hard.jpg" alt="">
                         <div class="caption">
                             <a href="#" class="pull-right" data-toggle="modal" data-target="#mod-project" ng-click="editProject(project)"><span class="glyphicon glyphicon-pencil greywolves"></span></a>
                             <h4><a href="#">{{project.title}}</a>
@@ -82,13 +82,11 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="project__title">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':project__title_invalid}">
-                                                                <input class="form-control" type="text" ng-model="projectNew.title" ng-keyup="keyEnter(fieldEditUpdate, [activeProject, projectNew, 'project__title',{action:'projectUpdate', pid:activeProject.pid}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(activeProject, projectNew, 'project__title',{action:'projectUpdate', pid:activeProject.pid})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('project__title')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group" ng-class="{'has-error':project__title_invalid}">
+                                                            <input class="form-control" type="text" ng-model="projectNew.title" ng-keyup="keyEnter(fieldEditUpdate, [activeProject, projectNew, 'project__title',{action:'projectUpdate', pid:activeProject.pid}], $event)"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(activeProject, projectNew, 'project__title',{action:'projectUpdate', pid:activeProject.pid})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('project__title')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -101,13 +99,11 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="project__description">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':project__description_invalid}">
-                                                                <input class="form-control" type="text" ng-model="projectNew.description" ng-keyup="keyEnter(fieldEditUpdate, [activeProject, projectNew, 'project__description',{action:'projectUpdate', pid:activeProject.pid}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(activeProject, projectNew, 'project__description',{action:'projectUpdate', pid:activeProject.pid})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('project__description')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group" ng-class="{'has-error':project__description_invalid}">
+                                                            <input class="form-control" type="text" ng-model="projectNew.description" ng-keyup="keyEnter(fieldEditUpdate, [activeProject, projectNew, 'project__description',{action:'projectUpdate', pid:activeProject.pid}], $event)"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(activeProject, projectNew, 'project__description',{action:'projectUpdate', pid:activeProject.pid})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('project__description')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -162,13 +158,11 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__team">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':user__team_invalid}">
-                                                                <input class="form-control" type="text" ng-model="userNew.team" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__team',{action:'teamUpdate'}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__team',{action:'teamUpdate'})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__team')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group" ng-class="{'has-error':user__team_invalid}">
+                                                            <input class="form-control" type="text" ng-model="userNew.team" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__team',{action:'teamUpdate'}], $event)"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__team',{action:'teamUpdate'})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__team')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr><tr>
@@ -180,13 +174,11 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__team_description">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':user__team_description_invalid}">
-                                                                <input class="form-control" type="text" ng-model="userNew.team_description" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__team_description',{action:'teamUpdate'}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__team_description',{action:'teamUpdate'})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__team_description')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group" ng-class="{'has-error':user__team_description_invalid}">
+                                                            <input class="form-control" type="text" ng-model="userNew.team_description" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__team_description',{action:'teamUpdate'}], $event)"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__team_description',{action:'teamUpdate'})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__team_description')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr><tr>
@@ -194,17 +186,15 @@
                                                 <td>
                                                     <div ng-hide="user__email">
                                                         <h6>
-                                                            <span>{{user.email}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__email')"></span></a>
+                                                            <span>{{user.email}}</span> <a href="#" title="Edit" ng-hide="true"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__email')"></span></a>
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__email">
-                                                        <h6>
-                                                            <div class="form-group"  ng-class="{'has-error':user__email_invalid = !uEmail.$valid}">
-                                                                <input ng-form="uEmail" class="form-control" type="email" ng-model="userNew.email" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__email',{action:'userUpdate'}], $event)" required="required"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__email',{action:'userUpdate'})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__email')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group"  ng-class="{'has-error':user__email_invalid = !uEmail.$valid}">
+                                                            <input ng-form="uEmail" class="form-control" type="email" ng-model="userNew.email" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__email',{action:'userUpdate'}], $event)" required="required"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__email',{action:'userUpdate'})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__email')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr><tr>
@@ -216,13 +206,11 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__fname">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':user__fname_invalid}">
-                                                                <input class="form-control" type="text" ng-model="userNew.fname" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__fname',{action:'userUpdate'}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__fname',{action:'userUpdate'})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__fname')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group" ng-class="{'has-error':user__fname_invalid}">
+                                                            <input class="form-control" type="text" ng-model="userNew.fname" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__fname',{action:'userUpdate'}], $event)"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__fname',{action:'userUpdate'})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__fname')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr><tr>
@@ -234,13 +222,11 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__lname">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':user__lname_invalid}">
-                                                                <input class="form-control" type="text" ng-model="userNew.lname" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__lname',{action:'userUpdate'}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__lname',{action:'userUpdate'})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__lname')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group" ng-class="{'has-error':user__lname_invalid}">
+                                                            <input class="form-control" type="text" ng-model="userNew.lname" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__lname',{action:'userUpdate'}], $event)"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__lname',{action:'userUpdate'})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__lname')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr><tr>
@@ -252,13 +238,11 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__title">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':user__title_invalid}">
-                                                                <input class="form-control" type="text" ng-model="userNew.title" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__title',{action:'userUpdate'}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__title',{action:'userUpdate'})"></span></a>
-                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__title')"></span></a>
-                                                            </div>
-                                                        </h6>
+                                                        <div class="form-group" ng-class="{'has-error':user__title_invalid}">
+                                                            <input class="form-control" type="text" ng-model="userNew.title" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__title',{action:'userUpdate'}], $event)"/>
+                                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__title',{action:'userUpdate'})"></span></a>
+                                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__title')"></span></a>
+                                                        </div>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -271,13 +255,24 @@
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__pass">
-                                                        <h6>
-                                                            <div class="form-group" ng-class="{'has-error':user__title_invalid}">
-                                                                <input class="form-control" type="text" ng-model="userNew.title" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__title',{action:'userUpdate'}], $event)"/>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__title',{action:'userUpdate'})"></span></a>
+                                                        <form name="frmPass">
+                                                            <div class="form-group" ng-class="{'has-error':user__pass_invalid}">
+                                                                Current Password:
+                                                                <input class="form-control" type="password" ng-model="userNew.pass0" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
+                                                            </div>
+                                                            <div class="form-group" ng-class="{'has-error':user__pass_invalid}">
+                                                                New Password:
+                                                                <input name="newpass" class="form-control" type="password" ng-model="userNew.pass1" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
+                                                                <p class="text-danger" ng-show="frmPass.newcpass.$error.passlen">Password should have at least 4 charaters.</p>
+                                                            </div>
+                                                            <div class="form-group" ng-class="{'has-error':user__pass_invalid}">
+                                                                Confirm Password:
+                                                                <input name="newcpass" pass-check="newpass" class="form-control" type="password" ng-model="userNew.pass2" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
+                                                                <p class="text-danger" ng-show="frmPass.newcpass.$error.passmatch">Confirm password did not match.</p>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__pass',{action:'userUpdate'})"></span></a>
                                                                 <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__pass')"></span></a>
                                                             </div>
-                                                        </h6>
+                                                        </form>
                                                     </div>
                                                 </td>
                                             </tr>

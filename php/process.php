@@ -16,7 +16,9 @@ if( isset($_POST) ){
 		case 'logout' : logout(); break;
 		case 'login' : login($_POST, $db); break;
 		case 'userData' : userData($db); break;
-		case 'userUpdate' : userUpdate($_POST, $db); break;
+		case 'userUpdate' : 
+			if(array_key_exist('emial', $_POST)) break; //Disable email edit
+			userUpdate($_POST, $db); break;
 		case 'addProject' : addProject($_POST, $db); break;
 		case 'projectData' : projectData($db); break;
 		case 'projectUpdate' : projectUpdate($_POST, $db); break;

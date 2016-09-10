@@ -250,6 +250,8 @@ require 'php/functions.php';
     <script src="js/bootstrap.min.js"></script>
     <!-- Angular -->
     <script src="js/angular.min.js"></script>
+    <!-- Init settings JavaScript -->
+    <script src="js/init.js"></script>
     <!-- Main JavaScript -->
     <script src="js/main.js"></script>
 </body>
