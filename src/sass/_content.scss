@@ -43,6 +43,10 @@ button:focus{
 /*Dashboard*/
 body{
 
+	.greywolves{
+		color: #999;
+	}
+
     dashboard{
 
         width: 100%;
@@ -59,11 +63,28 @@ body{
 				}
 				tr > td:nth-child(2) a > span{
 					margin-right: 6px;
+					margin-left: 6px;
 		    		color: #999;
 		    		font-size: 84%;	
 				}
 			}
 		}
+		#mod-account{
+			table.table{
+				border: 1px solid #eee;
+			}
+		}
 
+		#page-container{
+			.project-list{
+				margin-top: 3px;
+				.list-group-item input{
+					width: 100%;
+				}
+				.glyphicon{
+					padding-right: 9px;
+				}
+			}
+		}
     }
 }

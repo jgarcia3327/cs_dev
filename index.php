@@ -237,6 +237,8 @@ require 'php/functions.php';
                     <img title="NPM" src="img/logo/npm.png" />
                     <img title="Gulp JS" src="img/logo/gulp.png" />
                     <img title="GIT Bash" src="img/logo/git.png" />
+                    <img title="XAMPP" src="img/logo/xampp.svg" />
+                    <img title="PHPMyAdmin" src="img/logo/phpmyadmin.png" />
                 </div>
             </div>
         </div>

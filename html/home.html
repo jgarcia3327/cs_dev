@@ -9,11 +9,11 @@
                         <h1>Login</h1>
                         <div class="input-group input-group-lg" ng-class="{'has-error':logval.submitted}">
                             <span class="input-group-addon">Email</span>
-                            <input ng-model="logval.email" name="email" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" required="required" ng-keyup="keyCheckLgn($event)">
+                            <input ng-model="logval.email" name="email" type="text" class="form-control" placeholder="Email Address" aria-describedby="basic-addon1" required="required" ng-keyup="keyEnterHome(login, logval, $event)">
                         </div>
                         <div class="input-group input-group-lg" ng-class="{'has-error':logval.submitted}">
                             <span class="input-group-addon">Password</span>
-                            <input ng-model="logval.pass" name="pass" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" required="required" ng-keyup="keyCheckLgn($event)">
+                            <input ng-model="logval.pass" name="pass" type="password" class="form-control" placeholder="Password" aria-describedby="basic-addon1" required="required" ng-keyup="keyEnterHome(login, logval, $event)">
                         </div>
                         <p class="text-danger" ng-show="logval.submitted">Account not found. Please try again.</p>
                         <hr class="intro-divider">

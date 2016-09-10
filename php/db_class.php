@@ -130,12 +130,12 @@ class touch_db{
 	* @$arr = Array pair value
 	* @$cond = Array condition pair value. key = field, value = field_value
 	*/
-	public function update($table, $arr, $cond=null){
+	public function update($table, $arr, $cond=null, $extra=""){
 		$prepare = array();
 		if(is_array($arr)){
 			$fields = "";
 			foreach($arr as $k => $v){
-				$fields .= "`{$k}` = ?, ";
+				$fields .= "{$k} = ?, ";
 				$prepare[] = $v;
 			}
 			$fields = substr($fields, 0, -2);
@@ -150,7 +150,7 @@ class touch_db{
 			}
 			$where = substr($where, 0, -4);
 		}
-		$query = "UPDATE `{$table}` SET {$fields} {$where}";
+		$query = "UPDATE `{$table}` {$extra} SET {$fields} {$where}";
 		return $this->query($query, $prepare, true);
 	}
 

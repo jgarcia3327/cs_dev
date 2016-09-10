@@ -5,10 +5,17 @@
 
         <div class="col-md-3">
             <p class="lead">{{user.team}}</p>
-            <div class="list-group">
-                <a href="#" class="list-group-item">Category 1</a>
-                <a href="#" class="list-group-item">Category 2</a>
-                <a href="#" class="list-group-item">Category 3</a>
+            <blockquote>
+                <small>{{user.team_description}}</small>
+            </blockquote>
+            <button class="btn btn-primary" ng-click="newProject.add=true">Create Project</button>
+            <div class="project-list list-group">
+                <div class="input-group list-group-item" ng-show="newProject.add" ng-class="{'has-error':newProject.inValid}">
+                    <input ng-keyup="keyEnter(addNewProject, newProject, $event)" class="form-control" type="text" name="newProject" ng-model="newProject.title" placeholder="New Project" required="required"/>
+                    <a href="#" ng-click="addNewProject(newProject)"><span class="glyphicon glyphicon-ok"></span></a> 
+                    <a href="#" ng-click="newProject.add=false"><span class="glyphicon glyphicon-ban-circle"></span></a>
+                </div>
+                <a href="#" class="list-group-item" ng-repeat="project in projects | orderBy: '-date_created'" >{{project.title}}</a>
             </div>
         </div>
 
@@ -16,121 +23,22 @@
 
             <div class="row">
 
-                <div class="col-sm-4 col-lg-4 col-md-4">
+                <div class="col-sm-4 col-lg-4 col-md-4" ng-repeat="project in projects | orderBy:'-date_created'">
                     <div class="thumbnail">
                         <img src="http://placehold.it/320x150" alt="">
                         <div class="caption">
-                            <h4 class="pull-right">$24.99</h4>
-                            <h4><a href="#">First Product</a>
+                            <a href="#" class="pull-right" data-toggle="modal" data-target="#mod-project" ng-click="editProject(project)"><span class="glyphicon glyphicon-pencil greywolves"></span></a>
+                            <h4><a href="#">{{project.title}}</a>
                             </h4>
-                            <p>See more snippets like this online store item at <a target="_blank" href="http://www.bootsnipp.com">Bootsnipp - http://bootsnipp.com</a>.</p>
+                            <blockquote>
+                                <p>{{project.description}}</p>
+                                <small>Date Created: {{project.date_created}}</small>
+                            </blockquote>
                         </div>
                         <div class="ratings">
-                            <p class="pull-right">15 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                            </p>
+                            
                         </div>
                     </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
-                        <div class="caption">
-                            <h4 class="pull-right">$64.99</h4>
-                            <h4><a href="#">Second Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">12 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
-                        <div class="caption">
-                            <h4 class="pull-right">$74.99</h4>
-                            <h4><a href="#">Third Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">31 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
-                        <div class="caption">
-                            <h4 class="pull-right">$84.99</h4>
-                            <h4><a href="#">Fourth Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">6 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <div class="thumbnail">
-                        <img src="http://placehold.it/320x150" alt="">
-                        <div class="caption">
-                            <h4 class="pull-right">$94.99</h4>
-                            <h4><a href="#">Fifth Product</a>
-                            </h4>
-                            <p>This is a short description. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        </div>
-                        <div class="ratings">
-                            <p class="pull-right">18 reviews</p>
-                            <p>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star"></span>
-                                <span class="glyphicon glyphicon-star-empty"></span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-sm-4 col-lg-4 col-md-4">
-                    <h4><a href="#">Like this template?</a>
-                    </h4>
-                    <p>If you like this template, then check out <a target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">this tutorial</a> on how to build a working review system for your online store!</p>
-                    <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
                 </div>
 
             </div>
@@ -138,6 +46,86 @@
         </div>
 
     </div>
+
+<!-- Modal Project -->
+    <div id="mod-project" class="modal fade" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                  <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="content-section-b">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-2 col-sm-3">
+                                    <hr class="section-heading-spacer">
+                                    <div class="clearfix"></div>
+                                    <h2 class="section-heading">{{activeProject.title}}</h2>
+                                    <p class="lead"><span class="text-info">Legend:</span><br/>
+                                    <span class="glyphicon glyphicon-pencil text-muted"></span> - Edit<br/>
+                                    <span class="glyphicon glyphicon-ok text-muted"></span> - Update<br/>
+                                    <span class="glyphicon glyphicon-ban-circle text-muted"></span> - Cancel<br/>
+                                    </p>
+                                </div>
+                                <div class="col-lg-8 col-lg-offset-2 col-sm-9">
+                                    <table class="table table-striped table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <td><h6>Project</h6></td>
+                                                <td>
+                                                    <div ng-hide="project__title">
+                                                        <h6>
+                                                            <span>{{activeProject.title}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(activeProject, projectNew, 'project__title')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="project__title">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':project__title_invalid}">
+                                                                <input class="form-control" type="text" ng-model="projectNew.title" ng-keyup="keyEnter(fieldEditUpdate, [activeProject, projectNew, 'project__title',{action:'projectUpdate', pid:activeProject.pid}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(activeProject, projectNew, 'project__title',{action:'projectUpdate', pid:activeProject.pid})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('project__title')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Description</h6></td>
+                                                <td>
+                                                    <div ng-hide="project__description">
+                                                        <h6>
+                                                            <span>{{activeProject.description}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(activeProject, projectNew, 'project__description')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="project__description">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':project__description_invalid}">
+                                                                <input class="form-control" type="text" ng-model="projectNew.description" ng-keyup="keyEnter(fieldEditUpdate, [activeProject, projectNew, 'project__description',{action:'projectUpdate', pid:activeProject.pid}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(activeProject, projectNew, 'project__description',{action:'projectUpdate', pid:activeProject.pid})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('project__description')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.container -->
+                    </div>
+                    <!-- /.content-section-b -->
+
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Modal Project -->
 
 <!-- Modal Account -->
     <div id="mod-account" class="modal fade" role="dialog">
@@ -148,97 +136,161 @@
                 <div class="modal-content">
                   <div class="modal-body">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <table class="table table-striped table-hover">
-                        <tbody>
-                            <tr>
-                                <td><h6>Team</h6></td>
-                                <td>
-                                    <div ng-hide="userEdit.team">
-                                        <h6>
-                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('team')"></span></a>
-                                            <span>{{user.team}}</span>
-                                        </h6>
-                                    </div>
-                                    <div ng-show="userEdit.team">
-                                        <h6>
-                                            <span><input type="text" ng-model="userNew.team"/></span>
-                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('team')"></span></a>
-                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('team')"></span></a>
-                                        </h6>
-                                    </div>
-                                </td>
-                            </tr><tr>
-                                <td><h6>About the team</h6></td>
-                                <td>
-                                    <div ng-hide="userEdit.team_description">
-                                        <h6>
-                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('team_description')"></span></a>
-                                            <span>{{user.team_description}}</span>
-                                        </h6>
-                                    </div>
-                                    <div ng-show="userEdit.team_description">
-                                        <h6>
-                                            <span><input type="text" ng-model="userNew.team_description"/></span>
-                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('team_description')"></span></a>
-                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('team_description')"></span></a>
-                                        </h6>
-                                    </div>
-                                </td>
-                            </tr><tr>
-                                <td><h6>Email</h6></td>
-                                <td>
-                                    <div ng-hide="userEdit.email">
-                                        <h6>
-                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('email')"></span></a>
-                                            <span>{{user.email}}</span>
-                                        </h6>
-                                    </div>
-                                    <div ng-show="userEdit.email">
-                                        <h6>
-                                            <span><input type="text" ng-model="userNew.email"/></span>
-                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('email')"></span></a>
-                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('email')"></span></a>
-                                        </h6>
-                                    </div>
-                                </td>
-                            </tr><tr>
-                                <td><h6>Name</h6></td>
-                                <td>
-                                    <div ng-hide="userEdit.name">
-                                        <h6>
-                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('name')"></span></a>
-                                            <span>{{user.fname}} {{user.lname}}</span>
-                                        </h6>
-                                    </div>
-                                    <div ng-show="userEdit.name">
-                                        <h6>
-                                            <span><input type="text" ng-model="userNew.fname"/></span>
-                                            <span><input type="text" ng-model="userNew.lname"/></span>
-                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('name')"></span></a>
-                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('name')"></span></a>
-                                        </h6>
-                                    </div>
-                                </td>
-                            </tr><tr>
-                                <td><h6>Position</h6></td>
-                                <td>
-                                    <div ng-hide="userEdit.title">
-                                        <h6>
-                                            <a href="#" title="Edit"><span class="glyphicon glyphicon-console" ng-click="editUser('title')"></span></a>
-                                            <span>{{user.title}}</span>
-                                        </h6>
-                                    </div>
-                                    <div ng-show="userEdit.title">
-                                        <h6>
-                                            <span><input type="text" ng-model="userNew.title"/></span>
-                                            <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="editUpdate('title')"></span></a>
-                                            <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="editCancel('title')"></span></a>
-                                        </h6>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="content-section-b">
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-lg-2 col-sm-3">
+                                    <hr class="section-heading-spacer">
+                                    <div class="clearfix"></div>
+                                    <h2 class="section-heading">My Profile</h2>
+                                    <p class="lead"><span class="text-info">Legend:</span><br/>
+                                    <span class="glyphicon glyphicon-pencil text-muted"></span> - Edit<br/>
+                                    <span class="glyphicon glyphicon-ok text-muted"></span> - Update<br/>
+                                    <span class="glyphicon glyphicon-ban-circle text-muted"></span> - Cancel<br/>
+                                    </p>
+                                </div>
+                                <div class="col-lg-8 col-lg-offset-2 col-sm-9">
+                                    <table class="table table-striped table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <td><h6>Team</h6></td>
+                                                <td>
+                                                    <div ng-hide="user__team">
+                                                        <h6>
+                                                            <span>{{user.team}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__team')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="user__team">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':user__team_invalid}">
+                                                                <input class="form-control" type="text" ng-model="userNew.team" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__team',{action:'teamUpdate'}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__team',{action:'teamUpdate'})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__team')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr><tr>
+                                                <td><h6>About the team</h6></td>
+                                                <td>
+                                                    <div ng-hide="user__team_description">
+                                                        <h6>
+                                                            <span>{{user.team_description}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__team_description')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="user__team_description">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':user__team_description_invalid}">
+                                                                <input class="form-control" type="text" ng-model="userNew.team_description" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__team_description',{action:'teamUpdate'}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__team_description',{action:'teamUpdate'})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__team_description')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr><tr>
+                                                <td><h6>Email</h6></td>
+                                                <td>
+                                                    <div ng-hide="user__email">
+                                                        <h6>
+                                                            <span>{{user.email}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__email')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="user__email">
+                                                        <h6>
+                                                            <div class="form-group"  ng-class="{'has-error':user__email_invalid = !uEmail.$valid}">
+                                                                <input ng-form="uEmail" class="form-control" type="email" ng-model="userNew.email" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__email',{action:'userUpdate'}], $event)" required="required"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__email',{action:'userUpdate'})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__email')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr><tr>
+                                                <td><h6>First Name</h6></td>
+                                                <td>
+                                                    <div ng-hide="user__fname">
+                                                        <h6>
+                                                            <span>{{user.fname}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__fname')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="user__fname">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':user__fname_invalid}">
+                                                                <input class="form-control" type="text" ng-model="userNew.fname" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__fname',{action:'userUpdate'}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__fname',{action:'userUpdate'})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__fname')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr><tr>
+                                                <td><h6>Last Name</h6></td>
+                                                <td>
+                                                    <div ng-hide="user__lname">
+                                                        <h6>
+                                                            <span>{{user.lname}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__lname')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="user__lname">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':user__lname_invalid}">
+                                                                <input class="form-control" type="text" ng-model="userNew.lname" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__lname',{action:'userUpdate'}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__lname',{action:'userUpdate'})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__lname')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr><tr>
+                                                <td><h6>Position</h6></td>
+                                                <td>
+                                                    <div ng-hide="user__title">
+                                                        <h6>
+                                                            <span>{{user.title}}</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__title')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="user__title">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':user__title_invalid}">
+                                                                <input class="form-control" type="text" ng-model="userNew.title" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__title',{action:'userUpdate'}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__title',{action:'userUpdate'})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__title')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td><h6>Change password</h6></td>
+                                                <td>
+                                                    <div ng-hide="user__pass">
+                                                        <h6>
+                                                            <span>******</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__pass')"></span></a>
+                                                        </h6>
+                                                    </div>
+                                                    <div ng-show="user__pass">
+                                                        <h6>
+                                                            <div class="form-group" ng-class="{'has-error':user__title_invalid}">
+                                                                <input class="form-control" type="text" ng-model="userNew.title" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__title',{action:'userUpdate'}], $event)"/>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__title',{action:'userUpdate'})"></span></a>
+                                                                <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__pass')"></span></a>
+                                                            </div>
+                                                        </h6>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.container -->
+                    </div>
+                    <!-- /.content-section-b -->
+
+                    
                     <!--TODO <pre>{{ user | json }}</pre>-->
                   </div>
                 </div>
