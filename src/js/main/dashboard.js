@@ -47,6 +47,19 @@ csApp.factory('User', ['$http', function($http){
 	$scope.editProject = function(selProject){
 		$scope.activeProject = selProject;
 	}
+	//PASSWORD UPDATE
+	$scope.fieldPassEditUpdate = function(orig, tmp, field, action){
+		$scope.frmPass.newpass.$pristine = false;
+		$scope.frmPass.newcpass.$pristine = false;
+		if(typeof tmp.pass === 'undefined' || tmp.pass.length < 4){
+			$scope[field+'_invalid'] = true;
+		}
+		if($scope[field+'_invalid'] !== true && $scope['user__newpass_invalid'] === false){
+			console.log("Kill");
+			action['newpass'] = tmp.pass1;
+			fieldEditorUpdate($http, $scope, orig, tmp, field, action);
+		}
+	}
 	//DASHBOARD GENERAL EDITOR
 	$scope.fieldEdit = function(orig, tmp, field){
 		fieldEditor($scope, orig, tmp, field);
@@ -72,6 +85,16 @@ csApp.factory('User', ['$http', function($http){
 			}
 			else{
 				func(param);
+			}
+		}
+		else{ //disable error input field
+			if(param instanceof Array){
+				for(var i=0; i<param.length; i++){
+					if(typeof param[i] === 'string'){
+						$scope[param[i]+'_invalid'] = false;
+						break;
+					}
+				}
 			}
 		}
 	}

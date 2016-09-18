@@ -20,11 +20,11 @@ function fieldEditor($skop, orig, tmp, field){
 * action = object data
 */
 function fieldEditorUpdate($http, $skop, orig, tmp, field, action){
-	console.log(field);
 	//invalid input
 	if($skop[field+'_invalid'] === true){
 		return
 	}
+	console.log(field);
 	var e = field.substring(field.indexOf("__")+2);
 	//Clean leading and trailing spaces
 	tmp[e] = $.trim(tmp[e]);
@@ -38,7 +38,7 @@ function fieldEditorUpdate($http, $skop, orig, tmp, field, action){
 		if(orig[e] !== tmp[e]){
 			orig[e] = tmp[e];
 			action[e] = tmp[e];
-			//console.log(action);
+			console.log(action);
 			httpProcess($http, action, false, false);
 		}
 	}

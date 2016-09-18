@@ -23,6 +23,7 @@ if( isset($_POST) ){
 		case 'projectData' : projectData($db); break;
 		case 'projectUpdate' : projectUpdate($_POST, $db); break;
 		case 'teamUpdate' : teamUpdate($_POST, $db); break;
+		case 'passUpdate' : passUpdate($_POST, $db); break;
 	}
 
 	//UPDATE PROJECT TEST

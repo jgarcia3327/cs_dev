@@ -23,10 +23,8 @@ csApp.directive('homepage', [function(){
 		link: function(scope, elem, attrs, ctrl){
 			var pass = "input[name='" + attrs.passCheck + "']";
 			elem.add(pass).on('keyup', function(){
-				console.log("I'm here.");
 				scope.$apply(function(){
 					var valid = elem.val().length >= 4 && elem.val() === $(pass).val();
-					console.log("valid"+valid);
 					ctrl.$setValidity('passlen', $(pass).val().length >= 4);
 					ctrl.$setValidity('passmatch', elem.val() === $(pass).val());
 					ctrl.$setValidity('pass', valid);

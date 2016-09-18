@@ -69,6 +69,21 @@ function userUpdate($arr, $db){
 	}
 }
 
+function passUpdate($arr, $db){
+	if(!isLogin()){
+		return;
+	}
+	$table = 'user';
+	$cond = array(
+		'uid' => $_SESSION['uid'],
+		'active' => 1
+		);
+	$query = $db->update($table, $arr, $cond);
+	if($query === false){
+		jsonThrow(array('error' => "Error updating uid:".$uid." data"));
+	}
+}
+
 function projectUpdate($arr, $db){
 	$table = 'project';
 	$xtable = 'project_member';

@@ -251,25 +251,28 @@
                                                 <td>
                                                     <div ng-hide="user__pass">
                                                         <h6>
-                                                            <span>******</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__pass')"></span></a>
+                                                            <span>*********</span> <a href="#" title="Edit"><span class="glyphicon glyphicon-pencil" ng-click="fieldEdit(user, userNew, 'user__pass')"></span></a>
                                                         </h6>
                                                     </div>
                                                     <div ng-show="user__pass">
+                                                        <pre>{{user | json}}</pre>
                                                         <form name="frmPass">
-                                                            <div class="form-group" ng-class="{'has-error':user__pass_invalid}">
+                                                            <div class="form-group" ng-class="{'has-error':user__pass_invalid||user__newpass_invalid||frmPass.newcpass.$error.passmatch||frmPass.newcpass.$error.passlen}">
                                                                 Current Password:
-                                                                <input class="form-control" type="password" ng-model="userNew.pass0" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
+                                                                <input class="form-control" type="password" ng-model="userNew.pass" ng-keyup="keyEnter(fieldPassEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
+                                                                <p class="text-danger" ng-show="user__pass_invalid">Invalid current password.</p>
+                                                                <p class="text-danger" ng-show="user__newpass_invalid||frmPass.newcpass.$error.passmatch||frmPass.newcpass.$error.passlen">New and confirm new password is invalid.</p>
                                                             </div>
-                                                            <div class="form-group" ng-class="{'has-error':user__pass_invalid}">
+                                                            <div class="form-group" ng-class="{'has-error':frmPass.newcpass.$error.passlen||!frmPass.newpass.$valid&&!frmPass.newpass.$pristine}">
                                                                 New Password:
-                                                                <input name="newpass" class="form-control" type="password" ng-model="userNew.pass1" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
+                                                                <input required="required" name="newpass" class="form-control" type="password" ng-model="userNew.pass1" ng-keyup="user__newpass_invalid=false; keyEnter(fieldPassEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
                                                                 <p class="text-danger" ng-show="frmPass.newcpass.$error.passlen">Password should have at least 4 charaters.</p>
                                                             </div>
-                                                            <div class="form-group" ng-class="{'has-error':user__pass_invalid}">
+                                                            <div class="form-group" ng-class="{'has-error':frmPass.newcpass.$error.passmatch||!frmPass.newcpass.$valid&&!frmPass.newcpass.$pristine}">
                                                                 Confirm Password:
-                                                                <input name="newcpass" pass-check="newpass" class="form-control" type="password" ng-model="userNew.pass2" ng-keyup="keyEnter(fieldEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
+                                                                <input required="required" name="newcpass" pass-check="newpass" class="form-control" type="password" ng-model="userNew.pass2" ng-keyup="user__newpass_invalid=false; keyEnter(fieldPassEditUpdate, [user, userNew, 'user__pass',{action:'userUpdate'}], $event)"/>
                                                                 <p class="text-danger" ng-show="frmPass.newcpass.$error.passmatch">Confirm password did not match.</p>
-                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="fieldEditUpdate(user, userNew, 'user__pass',{action:'userUpdate'})"></span></a>
+                                                                <a href="#" title="Update"><span class="glyphicon glyphicon-ok" ng-click="user__newpass_invalid=frmPass.newcpass.$error.passmatch||frmPass.newcpass.$error.passlen||!frmPass.$valid; fieldPassEditUpdate(user, userNew, 'user__pass',{action:'passUpdate'})"></span></a>
                                                                 <a href="#" title="Cancel"><span class="glyphicon glyphicon-ban-circle" ng-click="fieldEditCancel('user__pass')"></span></a>
                                                             </div>
                                                         </form>
