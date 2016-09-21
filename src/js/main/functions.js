@@ -33,13 +33,26 @@ function fieldEditorUpdate($http, $skop, orig, tmp, field, action){
 		$skop[field+'_invalid'] = true;
 	}
 	else{
-		$skop[field+'invalid'] = false;
-		$skop[field] = false;
 		if(orig[e] !== tmp[e]){
 			orig[e] = tmp[e];
 			action[e] = tmp[e];
 			console.log(action);
-			httpProcess($http, action, false, false);
+			var responseUpdate = httpProcess($http, action, false, true);
+			responseUpdate.then(function(result){
+				//TODO
+				//$scope.projects.push(result.data);
+				console.log(result.data);
+				var data = result.data;
+				if(data !== null && typeof data === 'object' && 'error' in data){
+					console.log("Encounter error on update.");
+					$skop[field+'_invalid'] = true;
+				}
+				else{
+					console.log("Update Successful");
+					$skop[field+'invalid'] = false;
+					$skop[field] = false;
+				}
+			});
 		}
 	}
 }
@@ -67,8 +80,11 @@ function httpProcess($http, reqObj, reload, retReq){
 						reqObj.emailExist = true;
 					}
 				}
-				else{
+				else if(reload){
 					location.reload();
+				}
+				else{
+					return data;
 				}
 			}
 			else if(reload){

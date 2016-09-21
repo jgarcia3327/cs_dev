@@ -73,14 +73,28 @@ function passUpdate($arr, $db){
 	if(!isLogin()){
 		return;
 	}
-	$table = 'user';
-	$cond = array(
-		'uid' => $_SESSION['uid'],
-		'active' => 1
+	//Check password
+	$f = array(
+		'password' => $arr['pass'],
+		'uid' => $_SESSION['uid']
+	);
+	$uid = $db->getUID($f);
+	if($uid === false){
+		jsonThrow(array('error' => "Invalid password."));
+	}
+	else{
+		$table = 'user';
+		$cond = array(
+			'uid' => $_SESSION['uid'],
+			'active' => 1
+			);
+		$f = array(
+			'password' => $db->hashPass($arr['newpass'])
 		);
-	$query = $db->update($table, $arr, $cond);
-	if($query === false){
-		jsonThrow(array('error' => "Error updating uid:".$uid." data"));
+		$query = $db->update($table, $f, $cond);
+		if($query === false){
+			jsonThrow(array('error' => "Error updating password."));
+		}
 	}
 }
 
